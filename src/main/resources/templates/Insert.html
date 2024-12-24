@@ -10,6 +10,68 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div><!--여백-->
+        <div class="col-6">
+            <!--Controller에서 전달한 model.addAttribute를 object로 선언-->
+            <form th:action="@{/storeInsert}" method="post" th:object="${storeDTO}">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>총판 등록</h2>
+                        <!--모든 값은 value가 아닌 field로 선언해서 값을 적용-->
+                        <!--if="{#field.hassError()}"로 오류를 확인하고, error="{필드명}"으로 오류출력-->
+                        <!--오류메세지는 form내에 아무곳에 지정 가능-->
+                        <div class="mb-3 mt-3"><!--mt는 h2와의 여백, mb는 아래 항목과 여백-->
+                            <label for="storeName" class="form-label">총판명:</label>
+                            <input type="text" class="form-control" id="storeName"
+                                   placeholder="총판명을 입력하세요" name="storeName" th:field="*{storeName}">
+                            <!--storeName필드에 오류가 발생했으면 p태그를 표시한다.-->
+                            <!--storeName에 해당하는 오류메세지를 p태그의 값으로 출력한다.-->
+                            <p th:if="${#fields.hasErrors('storeName')}" th:errors="*{storeName}"></p>
+                        </div>
+                        <div class="mb-3 mb-3">
+                            <label for="storeId" class="form-label">총판ID:</label>
+                            <input type="text" class="form-control" id="storeId"
+                                   placeholder="총판ID를 입력하세요" name="storeId" th:field="*{storeId}">
+                            <p th:if="${#fields.hasErrors('storeId')}" th:errors="*{storeId}"></p>
+                        </div>
+                        <div class="mb-3 mb-3">
+                            <label for="storeChiefId" class="form-label">총판장ID:</label>
+                            <input type="text" class="form-control" id="storeChiefId"
+                                   placeholder="총판장ID를 입력하세요" name="storeChiefId" th:field="*{storeChiefId}">
+                            <p th:if="${#fields.hasErrors('storeChiefId')}" th:errors="*{storeChiefId}"></p>
+                        </div>
+                        <div class="mb-3 mb-3">
+                            <label for="storeChief" class="form-label">총판장:</label>
+                            <input type="text" class="form-control" id="storeChief"
+                                   placeholder="총판장을 입력하세요" name="storeChief" th:field="*{storeChief}">
+                            <p th:if="${#fields.hasErrors('storeChief')}" th:errors="*{storeChief}"></p>
+                        </div>
+                        <div class="mb-3 mb-3">
+                            <label for="storeTel" class="form-label">연락처:</label>
+                            <input type=text class="form-control" id="storeTel" placeholder="연락처를 입력하세요" name="storeTel">
+                        </div>
+                        <div class="mb-3 mb-3">
+                            <label class="form-label">삭제여부:</label>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="storeDel" value="Y" checked>예
 
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input"  name="storeDel" value="N">아니오
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">저장</button>
+                            <button type="reset" class="btn btn-secondary">초기화</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!--입력폼-->
+        <div class="col-3"></div><!--여백-->
+    </div>
+</div>
 </body>
 </html>

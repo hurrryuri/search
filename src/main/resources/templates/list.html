@@ -83,7 +83,7 @@
                         <a class="page-link" th:href="@{/storeList(page=${prevPage}, type=${type}, keyword=${keyword})}">이전</a>
                     </li>
                     <span th:each="page:${#numbers.sequence(startPage, endPage, 1)}"> <!--해당페이지번호 반복-->
-                        <li class="page-item" th:class="${page==currentPage}?'active'"><!--현재위치면 활성화-->
+                        <li class="page-item" th:class="${page==currentPage}?'active':''"><!--현재위치면 활성화-->
                             <a class="page-link" th:href="@{/storeList(page=${page}, type=${type}, keyword=${keyword})}" th:text="${page}">1</a>
                         </li>
                         </span>
